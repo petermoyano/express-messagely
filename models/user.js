@@ -15,7 +15,7 @@ class User {
         let hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR)
 
         const result = await db.query(`
-            INSERT INTO (users username, hashedPassword, first_name, last_name, phone)
+            INSERT INTO users (username, hashedPassword, first_name, last_name, phone)
             VALUES ($1, $2, $3, $4, $5, current_timestamp, current_timestamp) 
             RETURNING username, password, first_name, last_name, phone`,
             [username, hashedPassword, first_name, last_name, phone]);

@@ -9,7 +9,7 @@ CREATE TABLE users (
     first_name text NOT NULL,
     last_name text NOT NULL,
     phone text NOT NULL,
-    join_at timestamp without time zone NOT NULL,
+    join_at timestamp without time zone DEFAULT CURRENT_DATE NOT NULL,
     last_login_at timestamp with time zone
 );
 
@@ -18,6 +18,12 @@ CREATE TABLE messages (
     from_username text NOT NULL REFERENCES users,
     to_username text NOT NULL REFERENCES users,
     body text NOT NULL,
-    sent_at timestamp with time zone NOT NULL,
-    read_at timestamp with time zone
+    sent_at timestamp with time zone DEFAULT CURRENT_DATE NOT NULL,
+    read_at timestamp with time zoneDEFAULT CURRENT_DATE
 );
+
+INSERT INTO users (username, password, first_name, last_name, phone)
+VALUES
+ ('Esponjatron', 'Pass12', 'Peter', 'Moian', '+54 261 555645'),
+ ('Esponjatron1', 'Pass123', 'Peter3', 'Moian2', '+542 261 555645'),
+ ('Esponjatron2', 'ass123', 'Pet', 'Moian1', '+543 261 555645')
