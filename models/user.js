@@ -34,8 +34,6 @@ class User {
         const result = await db.query(`SELECT password FROM users WHERE username = $1`, [username]);
         let hashPassword = result[0];
         return hashPassword && await bcrypt.compare(password, passwordInDb)
-
-
     }
 
     /** Update last_login_at for user */
