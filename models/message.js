@@ -12,7 +12,7 @@ class Message {
    *    {id, from_username, to_username, body, sent_at}
    */
 
-  static async create({from_username, to_username, body}) {
+  static async create(from_username, to_username, body) {
     const result = await db.query(
         `INSERT INTO messages (
               from_username,
@@ -72,7 +72,6 @@ class Message {
         [id]);
 
     let m = result.rows[0];
-
     if (!m) {
       throw new ExpressError(`No such message: ${id}`, 404);
     }

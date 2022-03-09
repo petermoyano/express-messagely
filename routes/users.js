@@ -2,11 +2,10 @@ const express = require('express');
 const ExpressError = require('../expressError');
 const db = require('../db');
 const User = require("../models/user");
-const Message = require("../models/message");
 const { ensureLoggedIn, ensureCorrectUser } = require('../middleware/auth');
-const { user } = require('pg/lib/defaults');
 
-let router = new express.Router();
+
+const router = new express.Router();
 
 /** GET / - get list of users.
  *
@@ -20,7 +19,6 @@ router.get("/", ensureLoggedIn, async function (req, res, next) {
     } catch (err) {
         return next(err)
     }
-
 })
 
 /** GET /:username - get detail of users.
